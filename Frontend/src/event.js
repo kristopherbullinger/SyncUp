@@ -1,29 +1,39 @@
 class Event {
-  constructor(title, description, address, date, tags) {
-    this.title = title;
-    this.description = description;
-    this.address = address;
-    this.date = date;
-    this.tags = tags;
-    this.id = eventId++
+  constructor(attrs) {
+    this.title = attrs.title;
+    this.description = attrs.description;
+    this.address = attrs.address;
+    this.date = attrs.date;
+    this.tags = attrs.tags;
+    this.id = attrs.id
     Event.all.push(this)
   }
 
-  renderEvent() {
+  renderEventCard() {
     return `
-    <div data-id=${this.id}>
-      <h4>${this.name}</h4>
+    <div data-id=${this.id} class="event">
+      <h4>${this.title}</h4>
+      <ul>
+        <li>${this.date}</li>
+        <li>${this.tags.join(", ")}</li>
+      </ul>
+      <button class="attend-button">Attend</button>
+    </div>`
+  }
+
+  renderFullEventListing() {
+    return `
+    <div data-id=${this.id} class="event">
+      <h4>${this.title}</h4>
       <span>${this.description}</span>
       <ul>
         <li>${this.address}</li>
         <li>${this.date}</li>
-        <li>${this.tags}</li>
+        <li>${this.tags.join(", ")}</li>
       </ul>
-      <button>Attend</button>
+      <button class="attend-button">Attend</button>
     </div>`
   }
 
 }
-
 Event.all = []
-let eventId = 1;

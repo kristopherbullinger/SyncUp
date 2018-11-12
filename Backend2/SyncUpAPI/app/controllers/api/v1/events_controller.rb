@@ -35,8 +35,8 @@ class Api::V1::EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def event_params(params)
-    params.require(:event).permit(:address, :date, :title, :description, :tags)
+  def event_params
+    params.require(:event).permit(:address, :date, :title, :description, :tags => [])
   end
 
 end

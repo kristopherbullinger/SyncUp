@@ -7,6 +7,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
+    debugger
     @user = User.create(user_params)
     render :json => @user, status: :created
   end
@@ -28,7 +29,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params(params)
+  def user_params
     params.require(:user).permit(:name, :email)
   end
 
