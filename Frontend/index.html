@@ -11,29 +11,44 @@
   </head>
   <body>
 
-    <div id="header">
-      <h1>Sync Up</h1>
+
+
+    <div id="sidebar">
+      <div ><input type="text" id="search"></input></div>
+      <button id="create-event-button">Create Event</button>
     </div>
 
-    <div id="login-modal">
-      <form id="login-form" action="index.html" method="post">
-        <label>Username</label><input type="text" id="username" placeholder="username">
-        <label>Email</label><input type="text" id="email" placeholder="email address">
-        <button type="submit" name="button">Submit</button>
-      </form>
-    </div>
+    <div id="main-content">
+      <header>
+        <h1>Sync Up</h1>
+      </header>
+      <div id="login-modal">
+        <form id="login-form" action="index.html" method="post">
+          <label>Username</label><input type="text" id="username" placeholder="username">
+          <label>Email</label><input type="text" id="email" placeholder="email address">
+          <button type="submit" name="button">Submit</button>
+        </form>
+      </div>
 
-    <div id="search-panel">
-      <ul id="filter-options">
+      <div id="new-event-modal-background">
+        <div style="background-color: white;">
+          <form id="new-event-form" action="index.html" method="post">
+            <label>Title</label><input type="text" id="title" placeholder="title">
+            <label>Description</label><textarea placeholder="description" id="description"></textarea>
+            <label>Address</label><input type="text" id="address" placeholder="address">
+            <label>Date</label><input type="date" id="date" placeholder="MM-DD-YYYY">
+            <label>Tags</label><input type="text" id="tags" placeholder="type tags separated by spaces">
+            <button type="submit" name="button">Submit</button>
+          </form>
+        </div>
+      </div>
 
-      </ul>
-    </div>
+      <div id="event-container">
 
-    <div id="event-container">
-
-    </div>
-    <div id="modal-background">
-      <div id="modal-content">
+      </div>
+      <div id="modal-background">
+        <div id="modal-content">
+        </div>
       </div>
     </div>
   </body>

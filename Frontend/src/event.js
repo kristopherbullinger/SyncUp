@@ -6,7 +6,11 @@ class Event {
     this.date = attrs.date;
     this.tags = attrs.tags;
     this.id = attrs.id
-    this.attendees = attrs.attendees
+    if (attrs.attendees) {
+      this.attendees = attrs.attendees
+    } else {
+      this.attendees = []
+    }
     Event.all.push(this)
   }
 
@@ -37,7 +41,8 @@ class Event {
         <li class="attendees">${this.attendees.length} People Attending</li>
       </ul>
       <button class="attend-button">${buttonText}</button>
-    </div>`
+    </div>
+    `
   }
 
   static toggleModal(id) {

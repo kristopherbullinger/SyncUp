@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const eventContainer = document.querySelector('#event-container')
   const logInButton = document.querySelector('#login-button')
   const logInForm = document.querySelector("#login-form")
+  const createEventButton = document.querySelector("#create-event-button")
+  const createEventFormModal = document.querySelector("#new-event-modal-background")
+  const createEventForm = document.querySelector("#new-event-form")
+  const searchButton = document.querySelector("#search") // ADD EVENT LISTENER TOMORROW!!
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -20,9 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // modal for Login Form appears
-  // modal display none after login
+  createEventButton.addEventListener("click", event => {
+    createEventFormModal.style.display = "block"
+  })
 
+  createEventForm.addEventListener("submit", event => {
+    event.preventDefault()
+    let title = event.target.querySelector("#title").value
+    let description = event.target.querySelector("#description").value
+    let address = event.target.querySelector("#address").value
+    let date = event.target.querySelector("#date").value
+    let tags = event.target.querySelector("#tags").value.split(" ")
+    attrs = {event: {"title": title, "description": description, "address": address, "date": date, "tags": tags}}
+    fetch(endPointEvents, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(attrs)})
+    .then(res => res.json())
+    .then(newEvent => {
+      newLocalEvent = new Event(newEvent)
+      eventContainer.innerHTML += newLocalEvent.renderEventCard()
+      createEventFormModal.style.display = "none"
+    })
+  })
 
   logInForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -34,12 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(attrs)})
     .then(res => res.json())
-      // if (res.ok) {
-      //   res.json()
-      // } else {
-      //   debugger
-      //   location.reload()
-      // }
     .then(user => {
       if (user.errors) {
         user.errors.forEach(error => window.alert(error))
@@ -68,15 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
       id = event.target.dataset.id
       Event.toggleModal(id)
     }
-
   })
 
-    window.onclick = function(event) {
+  window.onclick = function(event) {
       if (event.target == document.getElementById('modal-background')) {
         document.getElementById('modal-background').style.display = "none";
+      } else if (event.target == document.getElementById('new-event-modal-background')) {
+          document.getElementById('new-event-modal-background').style.display = "none";
       } else if (Array.from(event.target.classList).includes("attend-button")) {
         event.stopPropagation()
-
         attrs = {attendance: {user_id: sessionUser.user.id, event_id: parseInt(event.target.parentElement.dataset.id)}}
         if (!Event.all.find(e => e.id == event.target.parentElement.dataset.id).attendees.includes(sessionUser.user.name)) {
           fetch(endPointAttendances, {
