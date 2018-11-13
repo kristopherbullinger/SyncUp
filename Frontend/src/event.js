@@ -6,6 +6,7 @@ class Event {
     this.date = attrs.date;
     this.tags = attrs.tags;
     this.id = attrs.id
+    this.attendees = attrs.attendees
     Event.all.push(this)
   }
 
@@ -16,6 +17,7 @@ class Event {
       <ul>
         <li>${this.date}</li>
         <li>${this.tags.join(", ")}</li>
+        <li>${this.attendees.length} People Attending</li>
       </ul>
       <button class="attend-button">Attend</button>
     </div>`
@@ -30,9 +32,17 @@ class Event {
         <li>${this.address}</li>
         <li>${this.date}</li>
         <li>${this.tags.join(", ")}</li>
+        <li>${this.attendees.length} People Attending</li>
       </ul>
       <button class="attend-button">Attend</button>
     </div>`
+  }
+
+  static toggleModal(id) {
+    let targetEvent = Event.all.find(event => event.id == id)
+    // debugger
+    document.getElementById('modal-content').innerHTML = targetEvent.renderFullEventListing();
+    document.getElementById('modal-background').style.display = "block"
   }
 
 }

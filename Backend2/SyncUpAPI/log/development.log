@@ -1905,3 +1905,711 @@ Processing by Api::V1::EventsController#index as */*
 Completed 200 OK in 41ms (Views: 1.7ms | ActiveRecord: 8.5ms)
 
 
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:12:54 -0500
+  
+ActiveRecord::NoDatabaseError (FATAL:  database "SyncUpAPI_development" does not exist
+):
+  
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:688:in `rescue in connect'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:684:in `connect'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:215:in `initialize'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:40:in `new'
+activerecord (5.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:40:in `postgresql_connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:809:in `new_connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:853:in `checkout_new_connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:832:in `try_to_checkout_new_connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:793:in `acquire_connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:521:in `checkout'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:380:in `connection'
+activerecord (5.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:1008:in `retrieve_connection'
+activerecord (5.2.1) lib/active_record/connection_handling.rb:118:in `retrieve_connection'
+activerecord (5.2.1) lib/active_record/connection_handling.rb:90:in `connection'
+activerecord (5.2.1) lib/active_record/migration.rb:554:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (484.2ms)[0m  [1m[35mCREATE DATABASE "SyncUpAPI_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (355.2ms)[0m  [1m[35mCREATE DATABASE "SyncUpAPI_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5880313183026265305)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20181112175958)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181112175958_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181112175958"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateAttendances (20181112180037)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "attendances" ("id" bigserial primary key, "user_id" integer, "event_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181112180037_create_attendances.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181112180037"]]
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateEvents (20181112180944)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "title" character varying, "description" character varying, "date" date, "tags" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181112180944_create_events.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181112180944"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddAddressToEvents (20181112195142)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (14.9ms)[0m  [1m[35mALTER TABLE "events" ADD "address" character varying[0m
+  ↳ db/migrate/20181112195142_add_address_to_events.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181112195142"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (11.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-11-12 22:14:39.991578"], ["updated_at", "2018-11-12 22:14:39.991578"]]
+  ↳ bin/rails:9
+  [1m[35m (5.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5880313183026265305)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:4
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Albert"], ["email", "albert@albert.com"], ["created_at", "2018-11-12 22:14:45.810063"], ["updated_at", "2018-11-12 22:14:45.810063"]]
+  ↳ db/seeds.rb:4
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:4
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kris"], ["email", "kris@grandma.com"], ["created_at", "2018-11-12 22:14:45.814918"], ["updated_at", "2018-11-12 22:14:45.814918"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:6
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Jamal"], ["email", "jama@grandma.com"], ["created_at", "2018-11-12 22:14:45.817898"], ["updated_at", "2018-11-12 22:14:45.817898"]]
+  ↳ db/seeds.rb:6
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:6
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:7
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Edwin"], ["email", "edwin@grandma.com"], ["created_at", "2018-11-12 22:14:45.820517"], ["updated_at", "2018-11-12 22:14:45.820517"]]
+  ↳ db/seeds.rb:7
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:7
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Stacey1"], ["email", "mega@grandma.com"], ["created_at", "2018-11-12 22:14:45.823227"], ["updated_at", "2018-11-12 22:14:45.823227"]]
+  ↳ db/seeds.rb:8
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Bigfoot"], ["email", "bigfoot@grandma.com"], ["created_at", "2018-11-12 22:14:45.825880"], ["updated_at", "2018-11-12 22:14:45.825880"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mEvent Create (8.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "description", "date", "created_at", "updated_at", "address") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "My FUn Event"], ["description", "Come and have some fun now!"], ["date", "2018-11-15"], ["created_at", "2018-11-12 22:14:45.918753"], ["updated_at", "2018-11-12 22:14:45.918753"], ["address", "ur mom's house"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mEvent Create (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "description", "date", "created_at", "updated_at", "address") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "bouncy castle & beer"], ["description", "bounce and buzz"], ["date", "2018-11-19"], ["created_at", "2018-11-12 22:14:45.974689"], ["updated_at", "2018-11-12 22:14:45.974689"], ["address", "Mr HAppy's Castle"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mEvent Create (0.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "description", "date", "created_at", "updated_at", "address") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Drink a shit ton of alcohol an make a total ass out of yourself"], ["description", "regret it every time but youll keep coming back"], ["date", "2018-11-16"], ["created_at", "2018-11-12 22:14:45.979327"], ["updated_at", "2018-11-12 22:14:45.979327"], ["address", "my parent's basement. dont wake them up pls"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mEvent Load (12.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mAttendance Create (11.8ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.062455"], ["updated_at", "2018-11-12 22:14:46.062455"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mAttendance Create (0.7ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.085789"], ["updated_at", "2018-11-12 22:14:46.085789"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Load (13.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mAttendance Create (8.6ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.110284"], ["updated_at", "2018-11-12 22:14:46.110284"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (30.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mEvent Load (25.8ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mAttendance Create (0.6ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.182263"], ["updated_at", "2018-11-12 22:14:46.182263"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mAttendance Create (1.0ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 5], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.201046"], ["updated_at", "2018-11-12 22:14:46.201046"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mAttendance Create (0.6ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 6], ["event_id", 1], ["created_at", "2018-11-12 22:14:46.213078"], ["updated_at", "2018-11-12 22:14:46.213078"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:19
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:19
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.219488"], ["updated_at", "2018-11-12 22:14:46.219488"]]
+  ↳ db/seeds.rb:19
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:19
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:20
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:20
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.225779"], ["updated_at", "2018-11-12 22:14:46.225779"]]
+  ↳ db/seeds.rb:20
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:20
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:21
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.232214"], ["updated_at", "2018-11-12 22:14:46.232214"]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:22
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:22
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.237996"], ["updated_at", "2018-11-12 22:14:46.237996"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:23
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 5], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.244241"], ["updated_at", "2018-11-12 22:14:46.244241"]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 6], ["event_id", 2], ["created_at", "2018-11-12 22:14:46.250166"], ["updated_at", "2018-11-12 22:14:46.250166"]]
+  ↳ db/seeds.rb:24
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:25
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:25
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:25
+  [1m[36mAttendance Create (0.6ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.256422"], ["updated_at", "2018-11-12 22:14:46.256422"]]
+  ↳ db/seeds.rb:25
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:26
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:26
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:26
+  [1m[36mAttendance Create (0.6ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.263015"], ["updated_at", "2018-11-12 22:14:46.263015"]]
+  ↳ db/seeds.rb:26
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:26
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:27
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:27
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:27
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.269764"], ["updated_at", "2018-11-12 22:14:46.269764"]]
+  ↳ db/seeds.rb:27
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:27
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:28
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.276748"], ["updated_at", "2018-11-12 22:14:46.276748"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:29
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:29
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:29
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 5], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.286831"], ["updated_at", "2018-11-12 22:14:46.286831"]]
+  ↳ db/seeds.rb:29
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:29
+  [1m[35m (9.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:30
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:30
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:30
+  [1m[36mAttendance Create (0.5ms)[0m  [1m[32mINSERT INTO "attendances" ("user_id", "event_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 6], ["event_id", 3], ["created_at", "2018-11-12 22:14:46.306127"], ["updated_at", "2018-11-12 22:14:46.306127"]]
+  ↳ db/seeds.rb:30
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:30
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:15:09 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/albertchun/.rvm/gems/ruby-2.3.3/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 244ms (Views: 1.1ms | ActiveRecord: 30.3ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:15:10 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 24ms (Views: 2.4ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:23:14 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 19ms (Views: 1.1ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:27:10 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 28ms (Views: 2.5ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:27:55 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 45ms (Views: 2.5ms | ActiveRecord: 10.8ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:28:27 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (3.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 30ms (Views: 1.3ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:29:42 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 24ms (Views: 2.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:30:15 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (5.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 49ms (Views: 9.7ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:31:47 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (5.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 38ms (Views: 4.3ms | ActiveRecord: 9.2ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:33:34 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 21ms (Views: 1.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:21 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 18ms (Views: 1.0ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:27 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 14ms (Views: 1.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:29 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 25ms (Views: 1.2ms | ActiveRecord: 10.5ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:31 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (3.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 26ms (Views: 1.3ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:37 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 19ms (Views: 1.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:38 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 22ms (Views: 1.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:43 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 19ms (Views: 1.1ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:52 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (2.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:34:59 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 14ms (Views: 1.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:36:39 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 18ms (Views: 1.0ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:37:12 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 17ms (Views: 0.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:38:04 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 14ms (Views: 0.9ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:40:13 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (2.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 30ms (Views: 1.5ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:42:17 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 29ms (Views: 1.1ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:43:07 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 17ms (Views: 1.1ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:55:41 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:57:19 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (2.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 27ms (Views: 1.3ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/api/v1/events" for 127.0.0.1 at 2018-11-12 17:57:31 -0500
+Processing by Api::V1::EventsController#index as */*
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/controllers/api/v1/events_controller.rb:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 1]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 2]]
+  ↳ app/models/event.rb:8
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "attendances" ON "users"."id" = "attendances"."user_id" WHERE "attendances"."event_id" = $1[0m  [["event_id", 3]]
+  ↳ app/models/event.rb:8
+Completed 200 OK in 14ms (Views: 1.0ms | ActiveRecord: 2.2ms)
+
+
