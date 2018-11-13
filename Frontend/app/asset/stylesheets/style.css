@@ -16,6 +16,9 @@
   padding: 1%;
 }
 
-#log-in-form {
-
+#login-form {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
 }

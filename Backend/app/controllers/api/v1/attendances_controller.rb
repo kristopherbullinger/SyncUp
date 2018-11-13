@@ -14,10 +14,10 @@ class Api::V1::AttendancesController < ApplicationController
 
   private
   def get_attendance
-    @attendance = Event.find(params[:id])
+    @attendance = Attendance.find(params[:id])
   end
 
-  def attendance_params(params)
+  def attendance_params
     params.require(:attendance).permit(:event_id, :user_id)
   end
 

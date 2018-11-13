@@ -17,7 +17,7 @@ class Event {
       <ul>
         <li>${this.date}</li>
         <li>${this.tags.join(", ")}</li>
-        <li>${this.attendees.length} People Attending</li>
+        <li class="attendees">${this.attendees.length} People Attending</li>
       </ul>
       <button class="attend-button">Attend</button>
     </div>`
@@ -32,7 +32,7 @@ class Event {
         <li>${this.address}</li>
         <li>${this.date}</li>
         <li>${this.tags.join(", ")}</li>
-        <li>${this.attendees.length} People Attending</li>
+        <li class="attendees">${this.attendees.length} People Attending</li>
       </ul>
       <button class="attend-button">Attend</button>
     </div>`
