@@ -9,14 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const logInButton = document.querySelector('#login-button')
   const logInForm = document.querySelector("#login-form")
 
-  fetch(endPointEvents)
-  .then(res => res.json())
-  .then(json => {
-    json.forEach(event => {
-      const newEvent = new Event(event);
-      eventContainer.innerHTML += newEvent.renderEventCard();
+  function fetchEvents() {
+    fetch(endPointEvents)
+    .then(res => res.json())
+    .then(json => {
+      json.forEach(event => {
+        const newEvent = new Event(event);
+        eventContainer.innerHTML += newEvent.renderEventCard();
+      });
     });
-  });
+  }
+
+  // modal for Login Form appears
+  // modal display none after login
+
 
   logInForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -28,17 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(attrs)})
     .then(res => res.json())
+      // if (res.ok) {
+      //   res.json()
+      // } else {
+      //   debugger
+      //   location.reload()
+      // }
     .then(user => {
-      sessionUser.user = user
-      event.target.reset()
-      event.target.style.display = ""
+      if (user.errors) {
+        user.errors.forEach(error => window.alert(error))
+        location.reload()
+      } else {
+        sessionUser.user = user
+        fetchEvents();
+        event.target.reset()
+        event.target.style.display = ""
+        event.target.parentElement.style.display = "none"
+      }
     })
-  })
-
-
-  logInButton.addEventListener('click', event => {
-    console.log(event)
-  })
+  }) // end of addEventListener
 
   eventContainer.addEventListener("click", event => {
     let id
@@ -46,36 +60,57 @@ document.addEventListener('DOMContentLoaded', () => {
       id = event.target.parentElement.dataset.id
     } else if (event.target.nodeName === "LI"){
       id = event.target.parentElement.parentElement.dataset.id
+      Event.toggleModal(id)
     } else if (event.target.nodeName === "UL" || event.target.nodeName === "H4") {
       id = event.target.parentElement.dataset.id
+      Event.toggleModal(id)
     } else if (Array.from(event.target.classList).includes("event")) {
       id = event.target.dataset.id
+      Event.toggleModal(id)
     }
-    Event.toggleModal(id)
+
   })
 
     window.onclick = function(event) {
       if (event.target == document.getElementById('modal-background')) {
         document.getElementById('modal-background').style.display = "none";
-      } else if (event.target.id === "login-button") {
-        User.toggleLoginForm()
       } else if (Array.from(event.target.classList).includes("attend-button")) {
+        event.stopPropagation()
+
         attrs = {attendance: {user_id: sessionUser.user.id, event_id: parseInt(event.target.parentElement.dataset.id)}}
-        fetch(endPointAttendances, {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(attrs)})
-        .then(res => res.json())
-        .then(attendance => {
-          let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == attendance.event_id)
-          let localEvent = Event.all.find(event => event.id === attendance.event_id)
-          localEvent.attendees.push(sessionUser.user.name)
-          eventCards.forEach(card => {
-            card.querySelector(".attendees").innerText = `${localEvent.attendees.length} People Attending`
+        if (!Event.all.find(e => e.id == event.target.parentElement.dataset.id).attendees.includes(sessionUser.user.name)) {
+          fetch(endPointAttendances, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(attrs)})
+          .then(res => res.json())
+          .then(attendance => {
+            let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == attendance.event_id)
+            let localEvent = Event.all.find(event => event.id === attendance.event_id)
+            localEvent.attendees.push(sessionUser.user.name)
+            eventCards.forEach(card =>  {
+              card.querySelector(".attendees").innerText = `${localEvent.attendees.length} People Attending`
+              card.querySelector('.attend-button').innerText = "Attending"
+            })
           })
+        } else {
+          fetch(endPointAttendances, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(attrs)})
+            .then(res => {
+              let notAttending = Event.all.find(event => event.id == attrs.attendance.event_id)
+              notAttending.attendees.splice(notAttending.attendees.indexOf(sessionUser.user.name), 1);
+              let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == notAttending.id)
+              eventCards.forEach(card =>  {
+                card.querySelector(".attendees").innerText = `${notAttending.attendees.length} People Attending`
+                card.querySelector('.attend-button').innerText = "Attend"
+              })
+            })
+        }
           // eventCard.querySelector(".attendees").innerHTML = `${localEvent.attendees.length} People Attending`
-        })
       }
     }
+
 
 }) // end of DOMContentLoaded

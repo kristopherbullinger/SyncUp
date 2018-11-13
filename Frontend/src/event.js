@@ -11,6 +11,7 @@ class Event {
   }
 
   renderEventCard() {
+    let buttonText = (this.attendees.includes(sessionUser.user.name)) ? "Attending" : "Attend"
     return `
     <div data-id=${this.id} class="event">
       <h4>${this.title}</h4>
@@ -19,11 +20,12 @@ class Event {
         <li>${this.tags.join(", ")}</li>
         <li class="attendees">${this.attendees.length} People Attending</li>
       </ul>
-      <button class="attend-button">Attend</button>
+      <button class="attend-button">${buttonText}</button>
     </div>`
   }
 
   renderFullEventListing() {
+    let buttonText = (this.attendees.includes(sessionUser.user.name)) ? "Attending" : "Attend"
     return `
     <div data-id=${this.id} class="event">
       <h4>${this.title}</h4>
@@ -34,7 +36,7 @@ class Event {
         <li>${this.tags.join(", ")}</li>
         <li class="attendees">${this.attendees.length} People Attending</li>
       </ul>
-      <button class="attend-button">Attend</button>
+      <button class="attend-button">${buttonText}</button>
     </div>`
   }
 

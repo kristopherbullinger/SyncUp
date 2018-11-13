@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, :attendances, :events
+      resources :users, :events
+      resources :attendances, except: [:destroy]
       # GET user/:id/attendances
       # GET event/:id/attendances
+      delete "attendances", to: "attendances#destroy"
     end
   end
 end

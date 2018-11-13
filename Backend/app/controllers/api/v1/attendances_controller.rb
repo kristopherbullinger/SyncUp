@@ -1,5 +1,5 @@
 class Api::V1::AttendancesController < ApplicationController
-  before_action :get_event, only: [:update, :destroy]
+  before_action :get_attendance, only: [:destroy]
 
   def create
     @attendance = Attendance.create(attendance_params)
@@ -14,7 +14,7 @@ class Api::V1::AttendancesController < ApplicationController
 
   private
   def get_attendance
-    @attendance = Attendance.find(params[:id])
+    @attendance = Attendance.find_by(attendance_params)
   end
 
   def attendance_params

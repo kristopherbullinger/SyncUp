@@ -8,7 +8,13 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.find_or_create_by(user_params)
-    render :json => @user, status: :created
+    if @user.valid?
+      render :json => @user, status: :created
+    else
+      errors = @user.errors.full_messages
+      user = JSON::parse(@user.to_json).merge({"errors" => errors})
+      render :json => user, status: 400
+    end
   end
 
   def update
