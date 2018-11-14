@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createEventForm = document.querySelector("#new-event-form")
   const searchInputField = document.querySelector("#search")
   const searchLink = document.querySelector("#search-link")
+  const myEvents = document.querySelector("#my-events")
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -125,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
       searchLink.style.display = "block"
     }
   }
+
+  myEvents.addEventListener("click", e => filterEvents(sessionUser.user.name))
 
   searchLink.addEventListener("click", toggleSearchbar)
 
