@@ -17,9 +17,11 @@
 }
 
 #login-form {
-  position: fixed;
-  left: 0;
-  top: 0;
+   margin: 15% auto;
+   padding: 15px;
+   border: 2px solid #888;
+   width: 40%;
+   text-align: center;
 }
 
 #login-modal {
@@ -30,7 +32,15 @@
   height: 100%;
   left: 0;
   top: 0;
-  background-color: black;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+
+#new-event-form {
+  margin: 15% auto;
+  padding: 15px;
+  border: 2px solid #888;
+  width: 80%;
+  display: block;
 }
 
 #new-event-modal-background {
@@ -41,13 +51,13 @@
   height: 100%;
   left: 0;
   top: 0;
-  background-color: black;
+  background-color: rgb(0, 0, 0, 0.7);
 }
 
 #sidebar {
   display: inline-block;
   height: 100%;
-  width: 30%;
+  width: 20%;
   z-index: 1;
   position:fixed;
   top: 0;
@@ -59,7 +69,7 @@
 }
 
 #main-content {
-  margin-left: 30%;
+  margin-left: 25%;
   padding-left: 2%;
 }
 
