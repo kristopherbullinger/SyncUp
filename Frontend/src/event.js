@@ -3,9 +3,11 @@ class Event {
     this.title = attrs.title;
     this.description = attrs.description;
     this.address = attrs.address;
-    this.date = attrs.date;
+    let date = new Date(attrs.date.split('-')).toString().split(" ").slice(0, 4);
+    this.date = `${date[0]}, ${date[1]}. ${date[2]}, ${date[3]}`
     this.tags = attrs.tags;
     this.id = attrs.id
+    this.user_id = attrs.user_id
     if (attrs.attendees) {
       this.attendees = attrs.attendees
     } else {
@@ -19,17 +21,18 @@ class Event {
     return `
     <div data-id=${this.id} class="event">
       <h4>${this.title}</h4>
-      <ul>
-        <li>${this.date}</li>
-        <li>${this.tags.join(", ")}</li>
-        <li class="attendees">${this.attendees.length} People Attending</li>
-      </ul>
+
+      <p>${this.date}</p>
+      <p class="attendees">${this.attendees.length} People Attending</p>
+      <p>${this.tags.join(", ")}</p>
+
       <button class="attend-button">${buttonText}</button>
     </div>`
   }
 
   renderFullEventListing() {
     let buttonText = (this.attendees.includes(sessionUser.user.name)) ? "Attending" : "Attend"
+    let deleteButton = (this.user_id == sessionUser.user.id) ? '<button class="delete-button">Delete</button>' : ''
     return `
     <div data-id=${this.id} class="event">
       <h4>${this.title}</h4>
@@ -38,18 +41,22 @@ class Event {
         <li>${this.address}</li>
         <li>${this.date}</li>
         <li>${this.tags.join(", ")}</li>
-        <li class="attendees">${this.attendees.length} People Attending</li>
+        <li class="attendees">People Attending: ${this.attendees.join(", ")}</li>
       </ul>
       <button class="attend-button">${buttonText}</button>
+      ${deleteButton}
     </div>
     `
   }
 
   static toggleModal(id) {
-    let targetEvent = Event.all.find(event => event.id == id)
-    // debugger
-    document.getElementById('modal-content').innerHTML = targetEvent.renderFullEventListing();
-    document.getElementById('modal-background').style.display = "block"
+    if (id) {
+      let targetEvent = Event.all.find(event => event.id == id)
+      // debugger
+      document.getElementById('modal-content').innerHTML = targetEvent.renderFullEventListing();
+    }
+    let modal = document.getElementById('modal-background')
+    modal.style.display = (modal.style.display == "block") ? "" : "block"
   }
 
 }

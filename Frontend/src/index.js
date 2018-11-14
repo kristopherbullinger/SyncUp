@@ -1,5 +1,4 @@
 let sessionUser = {}
-
 document.addEventListener('DOMContentLoaded', () => {
 
   const endPointEvents = 'http://localhost:3000/api/v1/events';
@@ -22,6 +21,86 @@ document.addEventListener('DOMContentLoaded', () => {
         eventContainer.innerHTML += newEvent.renderEventCard();
       });
     });
+  }
+
+  function attendEvent(attrs) {
+    fetch(endPointAttendances, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(attrs)})
+    .then(res => res.json())
+    .then(attendance => {
+      let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == attendance.event_id)
+      let localEvent = Event.all.find(event => event.id === attendance.event_id)
+      localEvent.attendees.push(sessionUser.user.name)
+      eventCards.forEach(card =>  {
+        card.querySelector(".attendees").innerText = `${localEvent.attendees.length} People Attending`
+        card.querySelector('.attend-button').innerText = "Attending"
+      })
+      document.getElementById('modal-content').innerHTML = localEvent.renderFullEventListing();
+    })
+  } // fix modal attend text
+
+  function unattendEvent(attrs) {
+    fetch(endPointAttendances, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(attrs)})
+      .then(res => {
+        let notAttending = Event.all.find(event => event.id == attrs.attendance.event_id)
+        notAttending.attendees.splice(notAttending.attendees.indexOf(sessionUser.user.name), 1);
+        let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == notAttending.id)
+        eventCards.forEach(card =>  {
+          card.querySelector(".attendees").innerText = `${notAttending.attendees.length} People Attending`
+          card.querySelector('.attend-button').innerText = "Attend"
+        })
+        document.getElementById('modal-content').innerHTML = notAttending.renderFullEventListing();
+      })
+  }
+
+  function deleteEvent(deleteEventId) {
+    let eventCards = document.querySelectorAll(`[data-id='${deleteEventId}']`)
+    fetch(`${endPointEvents}/${deleteEventId}`, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"}
+    }).then(res => {
+      Event.all = Event.all.filter(events => events.id != deleteEventId)
+      eventCards.forEach(events => events.remove())
+      Event.toggleModal();
+    })
+  }
+
+  function loginAttempt(attrs){
+    fetch(endPointUsers, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(attrs)})
+    .then(res => res.json())
+    .then(user => {
+      if (user.errors) {
+        user.errors.forEach(error => window.alert(error))
+        location.reload()
+      } else {
+        sessionUser.user = user
+        fetchEvents();
+        logInForm.reset()
+        logInForm.style.display = ""
+        logInForm.parentElement.style.display = "none"
+      }
+    })
+  }
+
+  function createEvent(atts) {
+    fetch(endPointEvents, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(attrs)})
+    .then(res => res.json())
+    .then(newEvent => {
+      newLocalEvent = new Event(newEvent)
+      eventContainer.innerHTML += newLocalEvent.renderEventCard()
+      createEventFormModal.style.display = "none"
+    })
   }
 
   searchInputField.addEventListener('input', event => {
@@ -48,41 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let address = event.target.querySelector("#address").value
     let date = event.target.querySelector("#date").value
     let tags = event.target.querySelector("#tags").value.split(" ")
-    attrs = {event: {"title": title, "description": description, "address": address, "date": date, "tags": tags}}
-    fetch(endPointEvents, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(attrs)})
-    .then(res => res.json())
-    .then(newEvent => {
-      newLocalEvent = new Event(newEvent)
-      eventContainer.innerHTML += newLocalEvent.renderEventCard()
-      createEventFormModal.style.display = "none"
-    })
-  })
+    attrs = {event: {"title": title, "description": description, "address": address, "date": date, "tags": tags, "user_id": sessionUser.user.id}}
+    createEvent(attrs);
+  }) // end create event
 
   logInForm.addEventListener("submit", (event) => {
     event.preventDefault()
-    username = event.target.querySelector("#username").value
-    email = event.target.querySelector("#email").value
-    attrs = {user: {"name": username, "email": email}}
-    fetch(endPointUsers, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(attrs)})
-    .then(res => res.json())
-    .then(user => {
-      if (user.errors) {
-        user.errors.forEach(error => window.alert(error))
-        location.reload()
-      } else {
-        sessionUser.user = user
-        fetchEvents();
-        event.target.reset()
-        event.target.style.display = ""
-        event.target.parentElement.style.display = "none"
-      }
-    })
+    let username = event.target.querySelector("#username").value
+    let email = event.target.querySelector("#email").value
+    let attrs = {user: {"name": username, "email": email}}
+    loginAttempt(attrs);
   }) // end of addEventListener
 
   eventContainer.addEventListener("click", event => {
@@ -107,41 +161,19 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (event.target == document.getElementById('new-event-modal-background')) {
           document.getElementById('new-event-modal-background').style.display = "none";
       } else if (Array.from(event.target.classList).includes("attend-button")) {
-        event.stopPropagation()
-        attrs = {attendance: {user_id: sessionUser.user.id, event_id: parseInt(event.target.parentElement.dataset.id)}}
-        if (!Event.all.find(e => e.id == event.target.parentElement.dataset.id).attendees.includes(sessionUser.user.name)) {
-          fetch(endPointAttendances, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(attrs)})
-          .then(res => res.json())
-          .then(attendance => {
-            let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == attendance.event_id)
-            let localEvent = Event.all.find(event => event.id === attendance.event_id)
-            localEvent.attendees.push(sessionUser.user.name)
-            eventCards.forEach(card =>  {
-              card.querySelector(".attendees").innerText = `${localEvent.attendees.length} People Attending`
-              card.querySelector('.attend-button').innerText = "Attending"
-            })
-          })
+        let eventTargetId = event.target.parentElement.dataset.id
+        let attrs = {attendance: {user_id: sessionUser.user.id, event_id: parseInt(eventTargetId)}}
+        if (!Event.all.find(e => e.id == eventTargetId).attendees.includes(sessionUser.user.name)) {
+          attendEvent(attrs);
         } else {
-          fetch(endPointAttendances, {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(attrs)})
-            .then(res => {
-              let notAttending = Event.all.find(event => event.id == attrs.attendance.event_id)
-              notAttending.attendees.splice(notAttending.attendees.indexOf(sessionUser.user.name), 1);
-              let eventCards = Array.from(document.querySelectorAll(".event")).filter(eventCard => eventCard.dataset.id == notAttending.id)
-              eventCards.forEach(card =>  {
-                card.querySelector(".attendees").innerText = `${notAttending.attendees.length} People Attending`
-                card.querySelector('.attend-button').innerText = "Attend"
-              })
-            })
+          unattendEvent(attrs);
         }
-          // eventCard.querySelector(".attendees").innerHTML = `${localEvent.attendees.length} People Attending`
       }
-    }
+      else if (Array.from(event.target.classList).includes("delete-button")) {
+        let deleteEventId = event.target.parentElement.dataset.id
+        deleteEvent(deleteEventId);
+      }
+    } //end of window.onclick
 
 
 }) // end of DOMContentLoaded
