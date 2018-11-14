@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createEventFormModal = document.querySelector("#new-event-modal-background")
   const createEventForm = document.querySelector("#new-event-form")
   const searchInputField = document.querySelector("#search")
+  const searchLink = document.querySelector("#search-link")
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -114,6 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
     foundEvents.forEach(eventObj => eventContainer.innerHTML += eventObj.renderEventCard())
     console.log(foundEventsStrings)
   }
+
+  function toggleSearchbar() {
+    if (searchInputField.style.display === "none") {
+      searchInputField.style.display = "block"
+      searchLink.style.display = "none"
+    } else {
+      searchInputField.style.display = "none"
+      searchLink.style.display = "block"
+    }
+  }
+
+  searchLink.addEventListener("click", toggleSearchbar)
 
   searchInputField.addEventListener('input', event => filterEvents(searchInputField.value))
 
