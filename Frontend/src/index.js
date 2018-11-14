@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createEventButton = document.querySelector("#create-event-button")
   const createEventFormModal = document.querySelector("#new-event-modal-background")
   const createEventForm = document.querySelector("#new-event-form")
-  const searchInputField = document.querySelector("#search") // ADD EVENT LISTENER TOMORROW!!
+  const searchInputField = document.querySelector("#search")
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -26,22 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   searchInputField.addEventListener('input', event => {
     const searchInput = event.target.value.toLowerCase().split(" ")
-    let foundEvents = []
-    searchInput.forEach(word => {
-      Event.all.forEach(eventObj => {
-        let eventString = JSON.stringify(eventObj).toLowerCase()
-        if (!foundEvents.includes(eventString) && eventString.includes(word)) {foundEvents.push(eventString)}
-      })
+    let foundEvents = Event.all.filter(eventObj => {
+      let eventString = JSON.stringify(eventObj).toLowerCase()
+      return searchInput.every(word => eventString.includes(word))
     })
-    // const filteredEvent = Event.all.filter((eventObject) => {
-    //   // pokemonObject.name -> 'charizard'
-    //   return eventObject.title.includes(searchInput.toLowerCase()) || eventObject.description.includes(searchInput.toLowerCase())
-    //   || eventObject.tags.includes(searchInput.toLowerCase()) || eventObject.date.includes(searchInput.toLowerCase()) ||
-    //   eventObject.attendees.includes(searchInput.toLowerCase()) || eventObject.address.includes(searchInput.toLowerCase())
-    // })
-    // eventContainer.innerHTML = filteredEvent.renderEventCard();
-    console.log(foundEvents)
+    let foundEventsStrings = foundEvents.map(eventObj => JSON.stringify(eventObj))
+    eventContainer.innerHTML = ""
+    foundEvents.forEach(eventObj => eventContainer.innerHTML += eventObj.renderEventCard())
+    console.log(foundEventsStrings)
   })
+
 
   createEventButton.addEventListener("click", event => {
     createEventFormModal.style.display = "block"
