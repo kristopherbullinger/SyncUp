@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createEventButton = document.querySelector("#create-event-button")
   const createEventFormModal = document.querySelector("#new-event-modal-background")
   const createEventForm = document.querySelector("#new-event-form")
-  const searchButton = document.querySelector("#search") // ADD EVENT LISTENER TOMORROW!!
+  const searchInputField = document.querySelector("#search") // ADD EVENT LISTENER TOMORROW!!
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -23,6 +23,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  searchInputField.addEventListener('input', event => {
+    const searchInput = event.target.value.toLowerCase().split(" ")
+    let foundEvents = []
+    searchInput.forEach(word => {
+      Event.all.forEach(eventObj => {
+        let eventString = JSON.stringify(eventObj).toLowerCase()
+        if (!foundEvents.includes(eventString) && eventString.includes(word)) {foundEvents.push(eventString)}
+      })
+    })
+    // const filteredEvent = Event.all.filter((eventObject) => {
+    //   // pokemonObject.name -> 'charizard'
+    //   return eventObject.title.includes(searchInput.toLowerCase()) || eventObject.description.includes(searchInput.toLowerCase())
+    //   || eventObject.tags.includes(searchInput.toLowerCase()) || eventObject.date.includes(searchInput.toLowerCase()) ||
+    //   eventObject.attendees.includes(searchInput.toLowerCase()) || eventObject.address.includes(searchInput.toLowerCase())
+    // })
+    // eventContainer.innerHTML = filteredEvent.renderEventCard();
+    console.log(foundEvents)
+  })
 
   createEventButton.addEventListener("click", event => {
     createEventFormModal.style.display = "block"
