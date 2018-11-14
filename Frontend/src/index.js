@@ -103,18 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  searchInputField.addEventListener('input', event => {
-    const searchInput = event.target.value.toLowerCase().split(" ")
+  function filterEvents(input) {
+    input = input.toLowerCase().split(" ")
     let foundEvents = Event.all.filter(eventObj => {
       let eventString = JSON.stringify(eventObj).toLowerCase()
-      return searchInput.every(word => eventString.includes(word))
+      return input.every(word => eventString.includes(word))
     })
     let foundEventsStrings = foundEvents.map(eventObj => JSON.stringify(eventObj))
     eventContainer.innerHTML = ""
     foundEvents.forEach(eventObj => eventContainer.innerHTML += eventObj.renderEventCard())
     console.log(foundEventsStrings)
-  })
+  }
 
+  searchInputField.addEventListener('input', event => filterEvents(searchInputField.value))
 
   createEventButton.addEventListener("click", event => {
     createEventFormModal.style.display = "block"
