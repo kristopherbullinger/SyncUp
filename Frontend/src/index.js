@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createEventForm.addEventListener("submit", event => {
     event.preventDefault()
-    let title = event.target.querySelector("#title").value
+    let title = event.target.querySelector("#event-title").value
     let description = event.target.querySelector("#description").value
     let address = event.target.querySelector("#address").value
     let date = event.target.querySelector("#date").value
@@ -160,10 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let id
     if (Array.from(event.target.classList).includes("attend-button")) {
       id = event.target.parentElement.dataset.id
-    } else if (event.target.nodeName === "LI"){
-      id = event.target.parentElement.parentElement.dataset.id
-      Event.toggleModal(id)
-    } else if (event.target.nodeName === "UL" || event.target.nodeName === "H4") {
+    } else if (event.target.nodeName === "P" || event.target.nodeName === "H4") {
       id = event.target.parentElement.dataset.id
       Event.toggleModal(id)
     } else if (Array.from(event.target.classList).includes("event")) {
