@@ -15,16 +15,15 @@
   width: 40%;
   text-align: center;
   display: block;
-  background-color: white;
 }
 
 #login-form {
    margin: 15% auto;
    padding: 15px;
-   border: 2px solid #888;
+   border: 2px solid black;
    width: 40%;
    text-align: center;
-   background-color: white;
+   background-color: rgba(97, 113, 137, 0.9);
 }
 
 #login-modal {
@@ -41,11 +40,11 @@
 #new-event-form {
   margin: 10% auto;
   padding: 15px;
-  border: 2px solid #888;
+  border: 2px solid black;
   width: 25%;
   text-align: center;
   display: block;
-  background-color: white;
+  background-color: rgba(97, 113, 137, 0.9);
 }
 
 #new-event-modal-background {
@@ -140,4 +139,12 @@ ul {
   text-align: left;
   list-style-type: none;
   margin-left: -20px;
+}
+
+.event.full {
+  background-color: rgba(97, 113, 137, 0.9);
+}
+
+.form-input {
+  text-align: center;
 }

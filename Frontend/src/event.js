@@ -34,10 +34,9 @@ class Event {
     let buttonText = (this.attendees.includes(sessionUser.user.name)) ? "Attending" : "Attend"
     let deleteButton = (this.user_id == sessionUser.user.id) ? '<button class="delete-button">Delete</button>' : ''
     return `
-    <div data-id=${this.id} class="event">
+    <div data-id=${this.id} class="event full">
       <h4>${this.title}</h4>
-      <strong>Description:</strong>
-      <span>${this.description}</span>
+      <span><strong>Description: </strong>${this.description}</span>
       <ul>
         <li><strong>Address: </strong>${this.address}</li>
         <li><strong>Date: </strong>${this.date}</li>
