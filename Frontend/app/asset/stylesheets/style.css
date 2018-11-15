@@ -126,6 +126,7 @@ h4 {
   white-space: nowrap;
   text-shadow: 0px 0px 5px white, 2px 2px 7px grey;
   font-size: 3em;
+  margin-top: 0;
 }
 
 header {
