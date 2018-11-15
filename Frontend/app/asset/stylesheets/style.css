@@ -18,7 +18,7 @@
 }
 
 #login-form {
-   margin: 15% auto;
+   margin: 22% auto;
    padding: 15px;
    border: 2px solid black;
    width: 25%;
@@ -116,6 +116,8 @@ a:hover {
 }
 
 #event-container {
+  margin-left: 15%;
+  margin-right: 15%;
   height: auto;
 }
 
@@ -129,8 +131,6 @@ a:hover {
 }
 
 .event:hover {
-  /* animation-name: whiteshadow;
-  animation-duration: 0.75s; */
   box-shadow: 3px 3px 5px grey;
 }
 
@@ -140,11 +140,13 @@ h4 {
 }
 
 #title {
+  font-family: 'Caveat', cursive;
   overflow-x: visible;
   white-space: nowrap;
   text-shadow: 0px 0px 5px white, 2px 2px 7px grey;
-  font-size: 3em;
+  font-size: 6em;
   margin-top: 1%;
+  margin-bottom: 5%;
 }
 
 header {
@@ -221,4 +223,8 @@ ul {
 div span {
     margin: 1%;
 
+}
+
+* {
+  font-family: 'Lato', sans-serif;
 }
