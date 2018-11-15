@@ -102,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(newEvent => {
       newLocalEvent = new Event(newEvent)
       eventContainer.innerHTML += newLocalEvent.renderEventCard()
-      createEventFormModalBackground.style.display = "none"
+      fadeOutElement(createEventForm, createEventFormModalBackground)
+      // createEventFormModalBackground.style.display = "none"
     })
   }
 
