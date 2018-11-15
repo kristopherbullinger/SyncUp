@@ -227,5 +227,5 @@ div span {
 
 * {
   font-family: 'Lato', sans-serif;
-  cursor: url("../../images/ss_goddess_sword_cursors_by_blueamnesiac-d6be3ta.png"), auto;
+  cursor: url("../../images/ss_goddess_sword_cursors_by_blueamnesiac-d6be3ta.png"), auto!important; 
 }
