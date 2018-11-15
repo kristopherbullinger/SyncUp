@@ -36,11 +36,11 @@ class Event {
     return `
     <div data-id=${this.id} class="event full">
       <h4>${this.title}</h4>
-      <span><strong>Description: </strong>${this.description}</span>
       <ul>
-        <li><strong>Address: </strong>${this.address}</li>
-        <li><strong>Date: </strong>${this.date}</li>
-        <li><strong>Tags: </strong>${this.tags.join(", ")}</li>
+        <li><strong>Description: </strong>${this.description}</li><br>
+        <li><strong>Address: </strong>${this.address}</li><br>
+        <li><strong>Date: </strong>${this.date}</li><br>
+        <li><strong>Tags: </strong>${this.tags.join(", ")}</li><br>
         <li class="attendees"><strong>People Attending: </strong>${this.attendees.join(", ")}</li>
       </ul>
       <button class="attend-button">${buttonText}</button>
