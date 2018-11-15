@@ -162,3 +162,7 @@ ul {
 .form-input {
   text-align: center;
 }
+
+.modal-content {
+  opacity: 1;
+}

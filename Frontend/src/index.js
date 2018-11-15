@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const logInButton = document.querySelector('#login-button')
   const logInForm = document.querySelector("#login-form")
   const createEventButton = document.querySelector("#create-event-button")
-  const createEventFormModal = document.querySelector("#new-event-modal-background")
+  const createEventFormModalBackground = document.querySelector("#new-event-modal-background")
   const createEventForm = document.querySelector("#new-event-form")
+  const fullEventModalContent = document.querySelector("#modal-content")
+  const fullEventModalBackground = document.querySelector("#modal-background")
   const searchInputField = document.querySelector("#search")
   const searchLink = document.querySelector("#search-link")
   const myEvents = document.querySelector("#my-events")
@@ -86,8 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionUser.user = user
         fetchEvents();
         logInForm.reset()
-        logInForm.style.display = ""
-        logInForm.parentElement.style.display = "none"
+        fadeOutElement(logInForm, logInForm.parentElement)
       }
     })
   }
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(newEvent => {
       newLocalEvent = new Event(newEvent)
       eventContainer.innerHTML += newLocalEvent.renderEventCard()
-      createEventFormModal.style.display = "none"
+      createEventFormModalBackground.style.display = "none"
     })
   }
 
@@ -127,6 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function fadeOutElement(modalContent, modalBackground) {
+    modalContent.style.opacity = "1"
+    let myNewInterval = setInterval( () => {
+      dimmer(modalContent, modalBackground)
+      if (modalContent.style.opacity <= 0) {
+        modalContent.style.opacity = "1"
+        clearInterval(myNewInterval)
+      }
+    }, 2)
+    function dimmer(modalContent, modalBackground) {
+  	  modalContent.style.opacity -= 0.01
+      if (modalContent.style.opacity <= 0) {modalBackground.style.display = "none"}
+    }
+  }
+
   myEvents.addEventListener("click", e => filterEvents(sessionUser.user.name))
 
   searchLink.addEventListener("click", toggleSearchbar)
@@ -134,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInputField.addEventListener('input', event => filterEvents(searchInputField.value))
 
   createEventButton.addEventListener("click", event => {
-    createEventFormModal.style.display = "block"
+    createEventFormModalBackground.style.display = "block"
   })
 
   createEventForm.addEventListener("submit", event => {
@@ -170,10 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   window.onclick = function(event) {
-      if (event.target == document.getElementById('modal-background')) {
-        document.getElementById('modal-background').style.display = "none";
-      } else if (event.target == document.getElementById('new-event-modal-background')) {
-          document.getElementById('new-event-modal-background').style.display = "none";
+      if (event.target == fullEventModalBackground) {
+        fadeOutElement(fullEventModalContent, fullEventModalBackground)
+      } else if (event.target == createEventFormModalBackground) {
+          fadeOutElement(createEventForm, createEventFormModalBackground)
       } else if (Array.from(event.target.classList).includes("attend-button")) {
         let eventTargetId = event.target.parentElement.dataset.id
         let attrs = {attendance: {user_id: sessionUser.user.id, event_id: parseInt(eventTargetId)}}
