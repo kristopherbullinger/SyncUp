@@ -69,7 +69,7 @@
   left: 0;
   background-color: grey;
   padding-left: 2%;
-  padding-top: 10%;
+  padding-top: 5%;
   border-right-color: black;
   border-right-style: solid;
   border-right-width: 2px;
@@ -77,10 +77,12 @@
 
 #main-content {
   background-image: url('../../images/cafe_blue.jpg');
+  background-size: cover;
   margin: 0% 0% 0% 20%;
   padding-left: 2%;
   padding-bottom: 2%;
-  height: 100%;
+  min-height: 100%;
+  height: auto;
 }
 
 html, body {
@@ -108,12 +110,23 @@ a:hover {
   display: block;
 }
 
+#event-container {
+  height: auto;
+}
+
 .event {
   box-shadow: 2px 2px 6px black;
   padding: 10px 1em 10px;
   margin: 1%;
   background-color: rgba(97, 113, 137, 0.9);
   text-shadow: 0px 0px 2px grey;
+  transition: box-shadow 1s;
+}
+
+.event:hover {
+  /* animation-name: whiteshadow;
+  animation-duration: 0.75s; */
+  box-shadow: 3px 3px 5px grey;
 }
 
 h4 {
@@ -126,7 +139,7 @@ h4 {
   white-space: nowrap;
   text-shadow: 0px 0px 5px white, 2px 2px 7px grey;
   font-size: 3em;
-  margin-top: 0;
+  margin-top: 1%;
 }
 
 header {
@@ -142,3 +155,8 @@ ul {
   list-style-type: none;
   margin-left: -20px;
 }
+
+/* @keyframes whiteshadow {
+  0% {box-shadow: 2px 2px 6px black;}
+  100% {box-shadow: 0px 0px 0px white;}
+} */
