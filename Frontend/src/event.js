@@ -36,12 +36,13 @@ class Event {
     return `
     <div data-id=${this.id} class="event">
       <h4>${this.title}</h4>
+      <strong>Description:</strong>
       <span>${this.description}</span>
       <ul>
-        <li>${this.address}</li>
-        <li>${this.date}</li>
-        <li>${this.tags.join(", ")}</li>
-        <li class="attendees">People Attending: ${this.attendees.join(", ")}</li>
+        <li><strong>Address: </strong>${this.address}</li>
+        <li><strong>Date: </strong>${this.date}</li>
+        <li><strong>Tags: </strong>${this.tags.join(", ")}</li>
+        <li class="attendees"><strong>People Attending: </strong>${this.attendees.join(", ")}</li>
       </ul>
       <button class="attend-button">${buttonText}</button>
       ${deleteButton}
