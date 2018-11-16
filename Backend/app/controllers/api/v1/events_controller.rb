@@ -5,8 +5,6 @@ class Api::V1::EventsController < ApplicationController
     @events = Event.all
     modifiedEvents = []
     @events.each do |event|
-      event.tags ||= []
-      event.tags << "music" << "games"
       event = JSON::parse(event.to_json).merge({"attendees" => event.set_attendees})
       modifiedEvents << event
     end
@@ -14,6 +12,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def create
+    byebug
     @event = Event.create(event_params)
     render :json => @event, status: :created
   end
