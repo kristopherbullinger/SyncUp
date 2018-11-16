@@ -64,22 +64,6 @@ form#login-form div label {
   background-color: rgb(0, 0, 0, 0.7);
 }
 
-/* #sidebar {
-  display: inline-block;
-  height: 100%;
-  width: 20%;
-  z-index: 1;
-  position:fixed;
-  top: 0;
-  left: 0;
-  background-color: grey;
-  padding-left: 2%;
-  padding-top: 5%;
-  border-right-color: black;
-  border-right-style: solid;
-  border-right-width: 2px;
-} */
-
 #main-content {
   background-image: url('../../images/cafe_blue.jpg');
   background-size: cover;
@@ -184,9 +168,10 @@ ul {
 }
 #new-event-form input, textarea {
     border: 1px solid black;
-    width: 150px;
+    width: 80%;
     background-color: rgba(255, 255, 255, 0.75);
 }
+
 
 .sidenav {
     height: 100%;

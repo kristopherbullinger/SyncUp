@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let foundEventsStrings = foundEvents.map(eventObj => JSON.stringify(eventObj))
     eventContainer.innerHTML = ""
     foundEvents.forEach(eventObj => eventContainer.innerHTML += eventObj.renderEventCard())
-    console.log(foundEventsStrings)
   }
 
   function openSearchbar() {
