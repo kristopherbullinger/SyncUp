@@ -52,7 +52,6 @@ class Event {
   static toggleModal(id) {
     if (id) {
       let targetEvent = Event.all.find(event => event.id == id)
-      // debugger
       document.getElementById('modal-content').innerHTML = targetEvent.renderFullEventListing();
     }
     let modal = document.getElementById('modal-background')

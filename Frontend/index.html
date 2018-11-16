@@ -9,26 +9,13 @@
     <script src="src/event.js" charset="utf-8"></script>
     <script src="src/user.js" charset="utf-8"></script>
     <script src="src/attendance.js" charset="utf-8"></script>
-    <script>
-    function openNav() {
-        document.getElementById("sidebar").style.width = "250px";
-        document.getElementById("main-content").style.marginLeft = "250px";
-        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
-
-    function closeNav() {
-        document.getElementById("sidebar").style.width = "0";
-        document.getElementById("main-content").style.marginLeft= "0";
-        document.body.style.backgroundColor = "white";
-    }
-    </script>
   </head>
   <body>
 
     <div id="sidebar" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick=`${closeNav()}`>&times;</a>
+      <a href="#" class="closebtn">&times;</a>
       <div><a href="#" id="search-link">Search SyncUp</a></div>
-      <div><input type="text" id="search" placeholder="search for events by title, description, tags, attendees..." style="display: none;"></input></div>
+      <div><input type="text" id="search" placeholder="search for events by title, description, tags, attendees..." style="display: none;"></input><div id="close-search" style="display: hidden;">X</div></div>
       <div><a href="#" id="my-events">My Events</a></div>
       <div><a id="create-event-button">Create Event</a></div>
     </div>
@@ -37,7 +24,7 @@
       <header>
         <h1 id="title">SyncUp</h1>
       </header>
-        <span style="font-size:30px;cursor:pointer;float:left;" onclick=`${openNav()}`>&#9776; </span>
+        <span id="open-nav" style="font-size:30px;cursor:pointer;float:left;">&#9776; </span>
       <div id="login-modal" class="modal-content">
         <form id="login-form" action="index.html" method="post">
           <div><label>Username:</label> <input type="text" id="username" placeholder="username"></div><br>

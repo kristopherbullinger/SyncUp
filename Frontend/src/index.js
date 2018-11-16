@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullEventModalBackground = document.querySelector("#modal-background")
   const searchInputField = document.querySelector("#search")
   const searchLink = document.querySelector("#search-link")
+  const searchClose = document.querySelector("#close-search")
   const myEvents = document.querySelector("#my-events")
+  const openNavButton = document.querySelector("#open-nav")
+
 
   function fetchEvents() {
     fetch(endPointEvents)
@@ -119,14 +122,32 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(foundEventsStrings)
   }
 
-  function toggleSearchbar() {
-    if (searchInputField.style.display === "none") {
-      searchInputField.style.display = "block"
-      searchLink.style.display = "none"
-    } else {
-      searchInputField.style.display = "none"
-      searchLink.style.display = "block"
-    }
+  function openSearchbar() {
+    searchInputField.style.display = "inline"
+    searchClose.style.display = "inline"
+    searchLink.style.display = "none"
+  }
+
+  function closeSearchbar() {
+    filterEvents("")
+    searchInputField.style.display = "none"
+    searchClose.style.display = "none"
+    searchLink.style.display = "block"
+  }
+
+  function openNav() {
+      openNavButton.style.display = "none"
+      document.getElementById("sidebar").style.width = "250px";
+      document.getElementById("main-content").style.marginLeft = "250px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  }
+
+  function closeNav() {
+      openNavButton.style.display = "block"
+      document.getElementById("sidebar").style.width = "0";
+      document.getElementById("main-content").style.marginLeft= "0";
+      document.body.style.backgroundColor = "white";
+      closeSearchbar()
   }
 
   function fadeOutElement(modalContent, modalBackground) {
@@ -144,9 +165,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  document.querySelector(".closebtn").addEventListener("click", closeNav)
+
+  openNavButton.addEventListener("click", openNav)
+
+  searchClose.addEventListener("click", closeSearchbar)
+
   myEvents.addEventListener("click", e => filterEvents(sessionUser.user.name))
 
-  searchLink.addEventListener("click", toggleSearchbar)
+  searchLink.addEventListener("click", openSearchbar)
 
   searchInputField.addEventListener('input', event => filterEvents(searchInputField.value))
 
