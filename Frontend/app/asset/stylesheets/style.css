@@ -10,10 +10,12 @@
 }
 
 #modal-content {
-  margin: 15% auto;
+  margin: 75px auto 15%;
   border: 2px solid #888;
   width: 40%;
+  max-height: 550px;
   text-align: center;
+  overflow-y: scroll;
   display: block;
 }
 
@@ -165,6 +167,7 @@ ul {
 
 .modal-content {
   opacity: 1;
+
 }
 #new-event-form input, textarea {
     border: 1px solid black;
