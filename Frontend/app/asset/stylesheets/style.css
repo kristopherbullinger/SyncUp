@@ -111,6 +111,11 @@ a:hover {
   margin-left: 3em;
 }
 
+#close-search {
+  color: white;
+  margin-left: 10px;
+}
+
 #search-link {
   display: block;
 }
